@@ -65,7 +65,7 @@ WHERE CLC.CARDTYPE=3
                     Personnel = dataTable.Rows[i]["ELEMAN"].ToString()
                 });
             }
-            return View();
+            return View("Index", reportList);
         }
     }
 }
