@@ -1,8 +1,11 @@
-﻿@model IEnumerable<ReportSTP.Models.Report.CurrentAccountBalance>
+﻿@model IPagedList<ReportSTP.Models.Report.CurrentAccountBalance>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Bootstrap4.Core
 @{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
 }
 
 <div class="main-content">
@@ -10,11 +13,11 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">   @Html.DisplayNameFor(model => model.Definition)</th>
-                    <th scope="col">   @Html.DisplayNameFor(model => model.Code)</th>
-                    <th scope="col">   @Html.DisplayNameFor(model => model.Remainder)</th>
-                    <th scope="col">   @Html.DisplayNameFor(model => model.Currency)</th>
-                    <th scope="col">   @Html.DisplayNameFor(model => model.Personnel)</th>
+                    <th scope="col">Definition  @*@Html.DisplayNameFor(model => model.Definition)*@</th>
+                    <th scope="col">Code   @*@Html.DisplayNameFor(model => model.Code)*@</th>
+                    <th scope="col">Remainder   @*@Html.DisplayNameFor(model => model.Remainder)*@</th>
+                    <th scope="col">Currency   @*@Html.DisplayNameFor(model => model.Currency)*@</th>
+                    <th scope="col">Personel   @*@Html.DisplayNameFor(model => model.Personnel)*@</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,5 +43,7 @@
                 }
             </tbody>
         </table>
+        <br />
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.Minimal)
     </div>
 </div>
