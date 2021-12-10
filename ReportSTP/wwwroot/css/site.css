@@ -138,9 +138,9 @@ body {
         background-attachment: fixed;
         -webkit-background-size: cover;
         background-size: cover;
-        -webkit-filter: blur(10px);
-        -moz-filter: blur(10px);
-        filter: blur(10px);
+        -webkit-filter: blur(8px);
+        -moz-filter: blur(8px);
+        filter: blur(2px);
     }
 
 .contact-form {
@@ -184,7 +184,7 @@ body {
     margin-bottom: 20px;
 }
 
-    .contact-form input[type=email], .contact-form input[type=password] {
+    .contact-form input[type=text], .contact-form input[type=password] {
         border: none;
         border-bottom: 1px solid #fff;
         background: transparent;
@@ -192,6 +192,7 @@ body {
         height: 40px;
         color: #fff;
         font-size: 16px;
+      
     }
 
     .contact-form input[type=submit] {
