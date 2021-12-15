@@ -6,14 +6,20 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace ReportSTP.Controllers.Report
 {
     public class PurchaseAndSaleContractController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(int page=1)
         {
+            var result = GetList().ToPagedList(page, 10);
+            return View("Index", result);
+        }
 
+        public IEnumerable<PurchaseAndSaleContract> GetList()
+        {
             string connectionString = "Server=172.16.1.48;Database=TGR3;User Id=m.aliyev;Password=@a123123;";
             string query = @"SELECT 
 CASE WHEN A.TRCODE=2 THEN 'PURCHASE_CONTRACT'
@@ -86,7 +92,7 @@ LEFT OUTER JOIN LG_001_PROJECT PRO ON PRO.LOGICALREF=A.PROJECTREF
                             Payment = !string.IsNullOrEmpty(dataTable.Rows[i]["ODEME"].ToString()) ? Convert.ToDouble(dataTable.Rows[i]["ODEME"]) : 0.0,
                             NetTotal = !string.IsNullOrEmpty(dataTable.Rows[i]["NETTOTAL"].ToString()) ? Convert.ToDouble(dataTable.Rows[i]["NETTOTAL"]) : 0.0,
                             ValueAddedTax = !string.IsNullOrEmpty(dataTable.Rows[i]["KDV"].ToString()) ? Convert.ToDouble(dataTable.Rows[i]["KDV"]) : 0.0,
-                            
+
                             SpecialCode = dataTable.Rows[i]["OZELKOD"].ToString(),
                             ProjectCode = dataTable.Rows[i]["PROJEKOD"].ToString(),
                             ProjectName = dataTable.Rows[i]["PROJEAD"].ToString(),
@@ -100,7 +106,8 @@ LEFT OUTER JOIN LG_001_PROJECT PRO ON PRO.LOGICALREF=A.PROJECTREF
                         }
                     );
             }
-            return View();
+
+            return reportlist;
         }
     }
 }

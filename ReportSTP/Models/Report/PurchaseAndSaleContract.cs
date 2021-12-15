@@ -20,11 +20,11 @@ namespace ReportSTP.Models.Report
         public string ContractEndDate { get; set; }
         public string ContractCreateDate { get; set; }
         public string CreateBy { get; set; }
-        public double Advancepayment { get; set; }
-        public int PaymentDay { get; set; }
-        public double Payment { get; set; }
-        public double NetTotal { get; set; }
-        public double ValueAddedTax { get; set; }
+        public double? Advancepayment { get; set; }
+        public int? PaymentDay { get; set; }
+        public double? Payment { get; set; }
+        public double? NetTotal { get; set; }
+        public double? ValueAddedTax { get; set; }
         public string SpecialCode { get; set; }
         public string ProjectCode { get; set; }
         public string ProjectName { get; set; }
