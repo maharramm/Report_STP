@@ -15,7 +15,7 @@ namespace ReportSTP.Controllers.Report
     {
         public IActionResult Index(int page=1)
         {
-            var result = GetList().ToPagedList(page, 10);
+            var result = GetList().ToPagedList(page, 100);
             return View("Index", result);
         }
 

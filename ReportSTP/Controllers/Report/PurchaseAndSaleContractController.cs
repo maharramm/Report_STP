@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
@@ -108,6 +109,16 @@ LEFT OUTER JOIN LG_001_PROJECT PRO ON PRO.LOGICALREF=A.PROJECTREF
             }
 
             return reportlist;
+        }
+
+        public ActionResult GetPdf(string filePath)
+        {
+            var fileStream = new FileStream(filePath,
+                                             FileMode.Open,
+                                             FileAccess.Read
+                                           );
+            var fsResult = new FileStreamResult(fileStream, "application/pdf");
+            return fsResult;
         }
     }
 }

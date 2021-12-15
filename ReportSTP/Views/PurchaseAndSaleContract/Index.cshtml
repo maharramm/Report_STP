@@ -60,13 +60,22 @@
                         @Html.DisplayFor(modelItem => item.Account)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Link1)
+                        @if (!string.IsNullOrEmpty(item.Link1))
+                        {
+                            <a href="@Url.ActionLink("GetPdf", "PurchaseAndSaleContract", new { FilePath = item.Link1 } )" target="_blank">Link 1</a>
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Link2)
+                        @if (!string.IsNullOrEmpty(item.Link2))
+                        {
+                            <a href="@Url.ActionLink("GetPdf", "PurchaseAndSaleContract", new { FilePath = item.Link2 } )" target="_blank">Link 2</a>
+                        }
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Link3)
+                        @if (!string.IsNullOrEmpty(item.Link3))
+                        {
+                            <a href="@Url.ActionLink("GetPdf", "PurchaseAndSaleContract", new { FilePath = item.Link3 } )" target="_blank">Link 3</a>
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.LinkLoadDate)
