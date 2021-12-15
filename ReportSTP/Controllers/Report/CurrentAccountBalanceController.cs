@@ -21,7 +21,7 @@ namespace ReportSTP.Controllers.Report
 
         public IEnumerable<CurrentAccountBalance> GetList()
         {
-            string connectionString = "Server=172.16.1.48;Database=TGR3;User Id=m.aliyev;Password=@m123456;";
+            string connectionString = "Server=172.16.1.48;Database=TGR3;User Id=m.aliyev;Password=@a123123;";
             string query = @"SELECT CLC.DEFINITION_,CLC.CODE,A.Qaliq,A.VALYUTA,A.ELEMAN FROM (
                              SELECT 
                                     CLCARD.CODE AS KODU,

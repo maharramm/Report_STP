@@ -1,0 +1,132 @@
+﻿@model IPagedList<ReportSTP.Models.Report.PurchaseAndSaleContract>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Bootstrap4.Core
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">ContractType </th>
+                    <th scope="col">Contract </th>
+                    <th scope="col">ContractDocNo   </th>
+                    <th scope="col">AccountCode   </th>
+                    <th scope="col">Account   </th>
+                    <th scope="col">Link1   </th>
+                    <th scope="col">Link2   </th>
+                    <th scope="col">Link3   </th>
+                    <th scope="col">LinkLoadDate </th>
+                    <th scope="col">ContractBeginDate   </th>
+                    <th scope="col">ContractEndDate   </th>
+                    <th scope="col">ContractCreateDate  </th>
+                    <th scope="col">CreateBy   </th>
+                    <th scope="col">Advancepayment </th>
+                    <th scope="col">PaymentDay  </th>
+                    <th scope="col">Payment   </th>
+                    <th scope="col">NetTotal   </th>
+                    <th scope="col">ValueAddedTax   </th>
+                    <th scope="col">SpecialCode</th>
+                    <th scope="col">ProjectCode   </th>
+                    <th scope="col">ProjectName </th>
+                    <th scope="col">Warehouse </th>
+                    <th scope="col">Factory</th>
+                    <th scope="col">Currency   </th>
+                    <th scope="col">OfferNo  </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contract)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractDocNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.AccountCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Account)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Link1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Link2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Link3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LinkLoadDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractBeginDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractEndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ContractCreateDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreateBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Advancepayment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentDay)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Payment)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NetTotal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValueAddedTax)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SpecialCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Warehouse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProjectCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Factory)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Currency)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OfferNo)
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.Minimal)
+    </div>
+</div>
