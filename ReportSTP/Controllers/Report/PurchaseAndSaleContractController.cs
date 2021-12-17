@@ -117,7 +117,33 @@ LEFT OUTER JOIN LG_001_PROJECT PRO ON PRO.LOGICALREF=A.PROJECTREF
                                              FileMode.Open,
                                              FileAccess.Read
                                            );
-            var fsResult = new FileStreamResult(fileStream, "application/pdf");
+
+            string extension = filePath.Split('.').Last();
+            string contentType = string.Empty;
+
+            switch (extension)
+            {
+                case "pdf":
+                    contentType = "application/pdf";
+                    break;
+                case "docx":
+                    contentType = "application/vnd.openxmlformats-officedocument.wordprocessingml.document";
+                    break;
+                case "jpeg":
+                case "jpg":
+                    contentType = "image/jpeg";
+                    break;
+                case "png":
+                    contentType = "image/png";
+                    break;
+                case "gif":
+                    contentType = "image/gif";
+                    break;
+                default:
+                    break;
+            }
+
+            var fsResult = new FileStreamResult(fileStream, contentType);
             return fsResult;
         }
     }
