@@ -1,0 +1,175 @@
+﻿@model IPagedList<ReportSTP.Models.Report.BankAndCashTransaction>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Mvc.Bootstrap4.Core
+
+@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var link1 = "";
+    var link2 = "";
+    var link3 = "";
+}
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Girilmə yeri </th>
+                    <th scope="col">Tarix</th>
+                    <th scope="col">Cari</th>
+                    <th scope="col">Cari Adı</th>
+                    <th scope="col">Üst kod</th>
+                    <th scope="col">Üst kod adı</th>
+                    <th scope="col">Kod</th>
+                    <th scope="col">Kod Adı</th>
+                    <th scope="col">Sənəd No</th>
+                    <th scope="col">İş yeri</th>
+                    <th scope="col">Bölüm</th>
+                    <th scope="col">XərcMaddə</th>
+                    <th scope="col">Sözləşmə</th>
+                    <th scope="col">Eleman</th>
+                    <th scope="col">Proje kodu</th>
+                    <th scope="col">Debet AZN</th>
+                    <th scope="col">Kredit AZN</th>
+                    <th scope="col">Valyuta</th>
+                    <th scope="col">Valyutalı məbləğ</th>
+                    <th scope="col">Açıqlama</th>
+                    <th scope="col">Müqavilə Link 1</th>
+                    <th scope="col">Müqavilə Link 2</th>
+                    <th scope="col">Müqavilə Link 3</th>
+                    <th scope="col">Yaradılma tarixi</th>
+                    <th scope="col">Əlavə edən</th>
+                    <th scope="col">Son dəyişən</th>
+                    <th scope="col">Kilitləyən</th>
+                    <th scope="col">Dəyişdirilmə tarixi</th>
+                    <th scope="col">Özəl kod</th>
+                    <th scope="col">Özəl kod tanım</th>
+                    <th scope="col">Y1 açıqlama</th>
+                    <th scope="col">Y2 açıqlama</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EntryPlace)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContragentCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContragentName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpperCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpperCodeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodeName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FicheNo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FicheType)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.WorkPlace)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Division)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.XERCMADDE)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Contract)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Employee)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ProjectCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DebitAZN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreditAZN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Currency)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrencyAmount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ContractLink1))
+                            {
+                                <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink1 } )" target="_blank">Link 1</a>
+                            }
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ContractLink2))
+                            {
+                                <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink2 } )" target="_blank">Link 2</a>
+                            }
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ContractLink3))
+                            {
+                                <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink3 } )" target="_blank">Link 3</a>
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreateDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Adder)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Modifier)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Locker)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ModifyDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpecificCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SpecificCodeDescription)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description2)
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <br />
+        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.Minimal)
+    </div>
+</div>
+
