@@ -20,7 +20,7 @@ namespace ReportSTP.Models.Report
         public string FicheType { get; set; }
         public string WorkPlace { get; set; }
         public string Division { get; set; }
-        public string XERCMADDE { get; set; }
+        public string XercMadde { get; set; }
         public string Contract { get; set; }
         public string Employee { get; set; }
         public string ProjectCode { get; set; }

@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DataTables.AspNet.AspNetCore;
+using DataTables.AspNet.Core;
+using Microsoft.AspNetCore.Mvc;
+using ReportSTP.Extensions;
 using ReportSTP.Models.Report;
 using System;
 using System.Collections.Generic;
@@ -13,13 +16,13 @@ namespace ReportSTP.Controllers.Report
 {
     public class BankAndCashTransactionController : Controller
     {
-        public IActionResult Index(int page=1)
+        public IActionResult Index()
         {
-            var result = GetList().ToPagedList(page, 10);
-            return View("Index", result);
+            return View();
         }
 
-        public IEnumerable<BankAndCashTransaction> GetList()
+        [HttpPost]
+        public IActionResult GetList(IDataTablesRequest request)
         {
             string connectionString = "Server=172.16.1.48;Database=TGR3;User Id=m.aliyev;Password=@a123123;";
             string query = @"SELECT 
@@ -221,7 +224,71 @@ LEFT JOIN  TGR3..LG_001_CLCARD CL WITH(NOLOCK)  ON CL.LOGICALREF=D.CLIENTREF
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(command);
             DataTable dataTable = new DataTable();
             sqlDataAdapter.Fill(dataTable);
-            return (IEnumerable<BankAndCashTransaction>)dataTable;
+            List<BankAndCashTransaction> reportlist = new List<BankAndCashTransaction>();
+
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                reportlist.Add
+                    (
+                        new BankAndCashTransaction
+                        {
+                            EntryPlace = dataTable.Rows[i]["GirilmeYeri"].ToString(),                            
+                            Date = !string.IsNullOrEmpty(dataTable.Rows[i]["Tarix"].ToString()) ? Convert.ToDateTime((dataTable.Rows[i]["Tarix"].ToString())) : DateTime.MinValue,
+                            ContragentCode = dataTable.Rows[i]["Cari"].ToString(),
+                            ContragentName = dataTable.Rows[i]["CariAdi"].ToString(),
+                            UpperCode = dataTable.Rows[i]["UstKod"].ToString(),
+                            UpperCodeName = dataTable.Rows[i]["UstKodAdi"].ToString(),
+                            Code = dataTable.Rows[i]["Kodu"].ToString(),
+                            CodeName = dataTable.Rows[i]["KodADI"].ToString(),
+                            FicheNo = dataTable.Rows[i]["SenedNo"].ToString(),
+                            FicheType = dataTable.Rows[i]["FisTip"].ToString(),
+                            WorkPlace = dataTable.Rows[i]["ISH_YERI"].ToString(),
+                            Division = dataTable.Rows[i]["BOLUM"].ToString(),
+                            XercMadde = dataTable.Rows[i]["XERCMADDE"].ToString(),
+                            Contract = dataTable.Rows[i]["SOZLESHME"].ToString(),
+                            Employee = dataTable.Rows[i]["ELEMAN"].ToString(),
+                            ProjectCode = dataTable.Rows[i]["PROJEKODU"].ToString(),
+                            DebitAZN = !string.IsNullOrEmpty(dataTable.Rows[i]["DEBET_AZN"].ToString()) ? Convert.ToDouble(dataTable.Rows[i]["DEBET_AZN"]) : 0,
+                            CreditAZN = !string.IsNullOrEmpty(dataTable.Rows[i]["KREDIT_AZN"].ToString()) ? Convert.ToInt32(dataTable.Rows[i]["KREDIT_AZN"]) : 0,
+                            Currency = dataTable.Rows[i]["Valyuta"].ToString(),
+                            CurrencyAmount = !string.IsNullOrEmpty(dataTable.Rows[i]["ValyutaliMebleg"].ToString()) ? Convert.ToInt32(dataTable.Rows[i]["ValyutaliMebleg"]) : 0,
+                            Description = dataTable.Rows[i]["Aciqlama"].ToString(),
+
+
+                            ContractLink1 = dataTable.Rows[i]["MUQAVILE_LINK1"].ToString(),
+                            ContractLink2 = dataTable.Rows[i]["MUQAVILE_LINK2"].ToString(),
+                            ContractLink3 = dataTable.Rows[i]["MUQAVILE_LINK3"].ToString(),
+                            CreateDate = !string.IsNullOrEmpty(dataTable.Rows[i]["CREATEDATE"].ToString()) ? Convert.ToDateTime(dataTable.Rows[i]["CREATEDATE"].ToString()) : DateTime.MinValue,
+
+                            Adder = dataTable.Rows[i]["EKLEYEN"].ToString(),
+                            Modifier = dataTable.Rows[i]["SON_DEYISHEN"].ToString(),
+                            Locker = dataTable.Rows[i]["KLITLEYEN"].ToString(),
+                            ModifyDate = !string.IsNullOrEmpty(dataTable.Rows[i]["DEYISHDIRILME_TARIXI"].ToString()) ? Convert.ToDateTime(dataTable.Rows[i]["DEYISHDIRILME_TARIXI"].ToString()) : DateTime.MinValue,
+                            SpecificCode = dataTable.Rows[i]["OZELKOD"].ToString(),
+                            SpecificCodeDescription = dataTable.Rows[i]["OZELKODTANIM"].ToString(),
+                            Description1 = dataTable.Rows[i]["Y1_ACIKLAMA"].ToString(),
+                            Description2 = dataTable.Rows[i]["Y2_ACIKLAMA"].ToString()
+                        }
+                    );
+            }
+
+            // Filtering
+            var filteredRows = reportlist.AsQueryable().GlobalFilterBy(request.Search, request.Columns);
+
+            // Ordering and Paging
+            var pagedRows = filteredRows
+                .SortBy(request.Columns);
+
+            if (request.Length != -1)
+            {
+                pagedRows = pagedRows
+                    .Skip(request.Start)
+                    .Take(request.Length);
+            }
+
+            var response = DataTablesResponse.Create(request, reportlist.Count, filteredRows.Count(), pagedRows);
+
+            return new DataTablesJsonResult(response);
         }
 
         public ActionResult GetPdf(string filePath)

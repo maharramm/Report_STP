@@ -1,175 +1,359 @@
-﻿@model IPagedList<ReportSTP.Models.Report.BankAndCashTransaction>
-@using X.PagedList
-@using X.PagedList.Mvc.Core
-@using X.PagedList.Mvc.Bootstrap4.Core
-
-@{
+﻿@{
     ViewBag.Title = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    var link1 = "";
-    var link2 = "";
-    var link3 = "";
 }
 
 <div class="main-content">
     <div class="section__content section__content--p30">
-        <table class="table table-bordered">
+        <table id="table" class="table table-striped table-bordered" style="width: 100%;">
             <thead>
                 <tr>
-                    <th scope="col">Girilmə yeri </th>
-                    <th scope="col">Tarix</th>
-                    <th scope="col">Cari</th>
-                    <th scope="col">Cari Adı</th>
-                    <th scope="col">Üst kod</th>
-                    <th scope="col">Üst kod adı</th>
-                    <th scope="col">Kod</th>
-                    <th scope="col">Kod Adı</th>
-                    <th scope="col">Sənəd No</th>
-                    <th scope="col">İş yeri</th>
-                    <th scope="col">Bölüm</th>
-                    <th scope="col">XərcMaddə</th>
-                    <th scope="col">Sözləşmə</th>
-                    <th scope="col">Eleman</th>
-                    <th scope="col">Proje kodu</th>
-                    <th scope="col">Debet AZN</th>
-                    <th scope="col">Kredit AZN</th>
-                    <th scope="col">Valyuta</th>
-                    <th scope="col">Valyutalı məbləğ</th>
-                    <th scope="col">Açıqlama</th>
-                    <th scope="col">Müqavilə Link 1</th>
-                    <th scope="col">Müqavilə Link 2</th>
-                    <th scope="col">Müqavilə Link 3</th>
-                    <th scope="col">Yaradılma tarixi</th>
-                    <th scope="col">Əlavə edən</th>
-                    <th scope="col">Son dəyişən</th>
-                    <th scope="col">Kilitləyən</th>
-                    <th scope="col">Dəyişdirilmə tarixi</th>
-                    <th scope="col">Özəl kod</th>
-                    <th scope="col">Özəl kod tanım</th>
-                    <th scope="col">Y1 açıqlama</th>
-                    <th scope="col">Y2 açıqlama</th>
+                    <th>Girilmə yeri </th>
+                    <th>Tarix</th>
+                    <th>Cari</th>
+                    <th>Cari Adı</th>
+                    <th>Üst kod</th>
+                    <th>Üst kod adı</th>
+                    <th>Kod</th>
+                    <th>Kod Adı</th>
+                    <th>Sənəd No</th>
+                    <th>İş yeri</th>
+                    <th>Bölüm</th>
+                    <th>XərcMaddə</th>
+                    <th>Sözləşmə</th>
+                    <th>Eleman</th>
+                    <th>Proje kodu</th>
+                    <th>Debet AZN</th>
+                    <th>Kredit AZN</th>
+                    <th>Valyuta</th>
+                    <th>Valyutalı məbləğ</th>
+                    <th>Açıqlama</th>
+                    <th>Müqavilə Link 1</th>
+                    <th>Müqavilə Link 2</th>
+                    <th>Müqavilə Link 3</th>
+                    <th>Yaradılma tarixi</th>
+                    <th>Əlavə edən</th>
+                    <th>Son dəyişən</th>
+                    <th>Kilitləyən</th>
+                    <th>Dəyişdirilmə tarixi</th>
+                    <th>Özəl kod</th>
+                    <th>Özəl kod tanım</th>
+                    <th>Y1 açıqlama</th>
+                    <th>Y2 açıqlama</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EntryPlace)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Date)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ContragentCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ContragentName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UpperCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UpperCodeName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CodeName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FicheNo)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FicheType)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.WorkPlace)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Division)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.XERCMADDE)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Contract)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Employee)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProjectCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DebitAZN)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreditAZN)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Currency)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CurrencyAmount)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
+                @*@foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EntryPlace)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Date)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContragentCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ContragentName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpperCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UpperCodeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CodeName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FicheNo)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FicheType)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WorkPlace)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Division)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.XERCMADDE)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Contract)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Employee)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DebitAZN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreditAZN)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Currency)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CurrencyAmount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
 
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.ContractLink1))
-                            {
-                                <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink1 } )" target="_blank">Link 1</a>
-                            }
-                        </td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.ContractLink2))
-                            {
-                                <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink2 } )" target="_blank">Link 2</a>
-                            }
-                        </td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.ContractLink3))
-                            {
-                                <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink3 } )" target="_blank">Link 3</a>
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreateDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Adder)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Modifier)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Locker)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ModifyDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SpecificCode)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SpecificCodeDescription)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description1)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description2)
-                        </td>
-                    </tr>
-                }
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ContractLink1))
+                                {
+                                    <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink1 } )" target="_blank">Link 1</a>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ContractLink2))
+                                {
+                                    <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink2 } )" target="_blank">Link 2</a>
+                                }
+                            </td>
+                            <td>
+                                @if (!string.IsNullOrEmpty(item.ContractLink3))
+                                {
+                                    <a href="@Url.ActionLink("GetPdf", "BankAndCashTransaction", new { FilePath = item.ContractLink3 } )" target="_blank">Link 3</a>
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Adder)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Modifier)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Locker)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ModifyDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpecificCode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SpecificCodeDescription)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description1)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description2)
+                            </td>
+                        </tr>
+                    }*@
             </tbody>
         </table>
-        <br />
-        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page }), Bootstrap4PagedListRenderOptions.Minimal)
     </div>
 </div>
 
+@section Styles{
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.5.2/css/buttons.dataTables.min.css" />
+}
+
+
+@section Scripts{
+
+
+    <script>
+        $(document).ready(function () {
+            $('#table').DataTable({
+                serverSide: true,
+                ajax: {
+                    url: '@Url.Action("GetList", "BankAndCashTransaction")',
+                    type: 'POST'
+                },
+                processing: true,
+                order: [1, 'asc'],
+                columns: [
+                    {
+                        data: 'entryPlace'
+                    },
+                    {
+                        data: 'date'
+                    },
+                    {
+                        data: 'contragentCode'
+                    },
+                    {
+                        data: 'upperCode'
+                    },
+                    {
+                        data: 'upperCodeName'
+                    },
+                    {
+                        data: 'code'
+                    },
+                    {
+                        data: 'codeName'
+                    },
+                    {
+                        data: 'ficheNo'
+                    },
+                    {
+                        data: 'ficheType'
+                    },
+                    {
+                        data: 'workPlace'
+                    },
+                    {
+                        data: 'division'
+                    },
+                    {
+                        data: 'xercMadde'
+                    },
+                    {
+                        data: 'contract'
+                    },
+                    {
+                        data: 'employee'
+                    },
+                    {
+                        data: 'projectCode'
+                    },
+                    {
+                        data: 'debitAZN'
+                    },
+                    {
+                        data: 'creditAZN'
+                    },
+                    {
+                        data: 'currency'
+                    },
+                    {
+                        data: 'currencyAmount'
+                    },
+                    {
+                        data: 'description'
+                    },
+                    {
+                        data: 'contractLink1',
+                        render: function (data, type, row) {
+                            return type === 'display' && data.length > 0 ?  '<a href="@Url.Action("GetPdf", "BankAndCashTransaction")?filePath=' + row.contractLink1 +'" target="_blank">Link 1</a>' : '';
+                        }
+
+                    },
+                    {
+                        data: 'contractLink2',
+                        render: function (data, type, row) {
+                            return type === 'display' && data.length > 0 ?  '<a href="@Url.Action("GetPdf", "BankAndCashTransaction")?filePath=' + row.contractLink2 +'" target="_blank">Link 2</a>' : '';
+                        }
+                    },
+                    {
+                        data: 'contractLink3',
+                        render: function (data, type, row) {
+                            return type === 'display' && data.length > 0 ?  '<a href="@Url.Action("GetPdf", "BankAndCashTransaction")?filePath=' + row.contractLink3 +'" target="_blank">Link 3</a>' : '';
+                        }
+                    },
+                    {
+                        data: 'createDate'
+                    },
+                    {
+                        data: 'adder'
+                    },
+                    {
+                        data: 'modifier'
+                    },
+                    {
+                        data: 'locker'
+                    },
+                    {
+                        data: 'modifyDate'
+                    },
+                    {
+                        data: 'specificCode'
+                    },
+                    {
+                        data: 'specificCodeDescription'
+                    },
+                    {
+                        data: 'description1'
+                    },
+                    {
+                        data: 'description2'
+                    }
+
+                ],
+                dom: '<"row"<"col-sm-4"B>><"row"<"col-sm-4">><"row"<"col-sm-4">><"row"<"col-sm-4">><"row"<"col-sm-4">><"float-left"l><"float-right"f>rt<"row"<"col-sm-4"i><"col-sm-4"><"col-sm-4"p>>',
+                "lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+                "buttons": [
+                    {
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: [
+                            {
+                                extend: 'copy',
+                                text: 'copy',
+                                exportOptions: {
+                                    modifier: {
+                                        page: 'current'
+                                    }
+                                }
+                            },
+                            {
+                                extend: 'excel',
+                                text: 'excel',
+                                exportOptions: {
+                                    modifier: {
+                                        page: 'current'
+                                    }
+                                }
+                            },
+                            {
+                                extend: 'pdf',
+                                text: 'pdf',
+                                exportOptions: {
+                                    modifier: {
+                                        page: 'current'
+                                    }
+                                }
+                            },
+                            {
+                                extend: 'print',
+                                text: 'print',
+                                exportOptions: {
+                                    modifier: {
+                                        page: 'current'
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "language": {
+                    "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Azerbaijan.json"
+                },
+                "scrollX": true
+            }).fnSetFilteringDelay(1000);
+            });
+
+    </script>
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.2.7/js/dataTables.select.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.5.4/js/buttons.print.min.js"></script>
+
+
+}
